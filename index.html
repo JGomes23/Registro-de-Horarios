@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro de Horários</title>
@@ -27,7 +26,9 @@
         <button type="button" onclick="adicionarFuncionario()">
           Adicionar
         </button>
-        <button type="button" onclick="gerarPDF()">Download em PDF</button>
+        <button type="button" id="btnJPG" onclick="gerarJPG()">
+          Download JPG
+        </button>
       </form>
 
       <table id="tabela">
@@ -42,8 +43,7 @@
         <tbody></tbody>
       </table>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
     <script src="/Registro-de-Horarios/script.js"></script>
   </body>
 </html>

@@ -57,11 +57,17 @@ function excluirFuncionario(elemento) {
   const linha = elemento.parentNode.parentNode
   linha.parentNode.removeChild(linha)
 }
+function gerarJPG() {
+  html2canvas(document.querySelector('#tabela')).then(function (canvas) {
+    var a = document.createElement('a')
+    a.href = canvas
+      .toDataURL('image/jpeg')
+      .replace('image/jpeg', 'image/octet-stream')
+    a.download = 'tabela.jpg'
+    a.click()
+  })
+}
 
-function gerarPDF() {
-  const doc = new jsPDF()
-
-  doc.autoTable({ html: '#tabela' })
-
-  doc.save('registro-de-horarios.pdf')
+window.onload = function () {
+  document.querySelector('#btnJPG').addEventListener('click', gerarJPG)
 }
