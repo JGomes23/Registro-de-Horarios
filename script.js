@@ -71,3 +71,35 @@ function gerarJPG() {
 window.onload = function () {
   document.querySelector('#btnJPG').addEventListener('click', gerarJPG)
 }
+
+function gerarCSV() {
+  // Criar uma variável para armazenar os dados da tabela
+  let dados = ''
+
+  // Obter todas as linhas da tabela
+  const linhas = document.querySelectorAll('table tr')
+
+  // Percorrer as linhas da tabela e adicionar os dados na variável
+  for (let i = 0; i < linhas.length; i++) {
+    const colunas = linhas[i].querySelectorAll('td, th')
+    for (let j = 0; j < colunas.length; j++) {
+      if (j > 0) {
+        dados += ','
+      }
+      dados += colunas[j].innerText
+    }
+    dados += '\n'
+  }
+
+  // Criar um objeto Blob com os dados
+  const blob = new Blob([dados], { type: 'text/csv;charset=utf-8;' })
+
+  // Criar um link para download
+  const link = document.createElement('a')
+  link.href = URL.createObjectURL(blob)
+  link.download = 'tabela.csv'
+  link.style.display = 'none'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
